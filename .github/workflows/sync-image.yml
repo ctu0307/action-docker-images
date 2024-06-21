@@ -1,13 +1,20 @@
-name: Sync Image to Aliyun  
+# 工作流名称
+name: Sync Image to Aliyun
+# 工作流运行时显示名称
+run-name: ${{ github.actor }} is Sync Images to Ali DockerHub.
 
+# 控制这个action什么时候运行
 on:
+  # 这里是只有master分支发生 push 或者 pull事件时才会触发action运行
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+# 工作流程任务（通常含有一个或多个步骤）
 jobs:
   build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     steps:
@@ -17,16 +24,26 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2.9.1
 
-    - name: Login to Docker Hub
+    - name: Login to Ali Docker Hub
       uses: docker/login-action@v2.2.0
       with:
+        # 登录阿里云镜像仓库， 这里登录docker的用户名和密码在Secrets中设置
         registry: registry.cn-hangzhou.aliyuncs.com
-        username: ctu0307
-        password: abcctu98760
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
         logout: false
 
     - name: Use Skopeo Tools Sync Image to Docker Hub
+        env:
+          # 源仓库地址、包括在命名空间
+          source_docker_repo: docker://docker.io
+          # 目标仓库地址、包括在阿里云创建的命名空间
+          target_docker_repo: registry.cn-hangzhou.aliyuncs.com/docker-images-by-github
+          # 指定镜像名称
+          image_name: redis
+          # 指定镜像标签
+          tag: 7.2.5
       run: |
-         skopeo copy docker://docker.io/nacos/nacos-server:v2.3.0 docker://registry.cn-hangzhou.aliyuncs.com/docker-images-by-github/nacos-server:v2.3.0
+         skopeo copy $source_docker_repo/$image_name:$tag $target_docker_repo/$image_name:$tag
       # 使用 skopeo 工具将镜像同步到阿里云个人仓库中；
       # 使用时请自行修改【源】和【目标】的【仓库名称：docker-images-by-github】和【镜像名称】
