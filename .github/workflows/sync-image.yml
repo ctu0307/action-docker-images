@@ -34,7 +34,7 @@ jobs:
         logout: false
 
     - name: Use Skopeo Tools Sync Image to Docker Hub
-        env:
+      env:
           # 源仓库地址、包括在命名空间
           source_docker_repo: docker://docker.io
           # 目标仓库地址、包括在阿里云创建的命名空间
