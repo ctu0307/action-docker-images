@@ -42,7 +42,7 @@ jobs:
           # 指定镜像名称
           image_name: redis
           # 指定镜像标签
-          tag: 7.4-rc
+          tag: 7.0
       run: |
          skopeo copy $source_docker_repo/$image_name:$tag $target_docker_repo/$image_name:$tag
       # 使用 skopeo 工具将镜像同步到阿里云个人仓库中；
