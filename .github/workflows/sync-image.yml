@@ -40,11 +40,11 @@ jobs:
           # 目标仓库地址、包括在阿里云创建的命名空间
           target_docker_repo: docker://registry.cn-hangzhou.aliyuncs.com/docker-images-by-github
           # 指定镜像名称
-          image_name: redis
+          image_name: bltavares/zerotier
           # 指定镜像标签
           tag: latest
       run: |         
-          if ${{ contains(env.image_name, 'dis') }} ; then
+          if ${{ contains(env.image_name, '/') }} ; then
             echo "333"
            # skopeo copy $source_docker_repo/$image_name:$tag $target_docker_repo/$image_name:$tag
           # 使用 skopeo 工具将镜像同步到阿里云个人仓库中；
