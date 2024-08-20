@@ -40,7 +40,7 @@ jobs:
           # 目标仓库地址、包括在阿里云创建的命名空间
           target_docker_repo: docker://registry.cn-hangzhou.aliyuncs.com/docker-images-by-github
           # 指定镜像名称
-          image_name: bltavares/zerotier
+          image_name: zerotier
           # 指定镜像标签
           tag: latest
       run: |         
