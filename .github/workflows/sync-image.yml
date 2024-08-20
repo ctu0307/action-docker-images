@@ -43,7 +43,7 @@ jobs:
           image_name: redis
           # 指定镜像标签
           tag: latest
-      if: ${{ contains($(image_name), 'dis') }}
+      if: ${{ contains(env.image_name, 'dis') }}
       run: |         
           echo "1111111"
          # skopeo copy $source_docker_repo/$image_name:$tag $target_docker_repo/$image_name:$tag
