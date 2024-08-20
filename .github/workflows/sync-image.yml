@@ -47,12 +47,12 @@ jobs:
           tag: 1.14.0
       run: |         
           if ${{ contains(env.image_name, '/') }} ; then
-            echo "镜像名，多级目录！！"
+            echo "镜像名，多级目录！！！"
             skopeo copy $source_repo/$image_name:$tag $target_repo/$target_image_name:$tag            
           # 使用 skopeo 工具将镜像同步到阿里云个人仓库中；
           # 使用时请自行修改【源】和【目标】的【仓库名称：docker-images-by-github】和【镜像名称】
           else
-            echo "镜像名，非多级目录！！"
+            echo "镜像名，非多级目录！！！"
             skopeo copy $source_repo/$image_name:$tag $target_repo/$image_name:$tag
           fi
       
