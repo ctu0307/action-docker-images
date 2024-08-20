@@ -43,9 +43,8 @@ jobs:
           image_name: redis
           # 指定镜像标签
           tag: latest
-      #if: ${{ contains(env.image_name, 'dis') }}
       run: |         
-          if ${{ contains(env.image_name, 'hhkk') }} ; then
+          if ${{ contains(env.image_name, 'dis') }} ; then
             echo "333"
            # skopeo copy $source_docker_repo/$image_name:$tag $target_docker_repo/$image_name:$tag
           # 使用 skopeo 工具将镜像同步到阿里云个人仓库中；
