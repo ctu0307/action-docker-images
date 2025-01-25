@@ -42,7 +42,7 @@ jobs:
           # 指定镜像名称，此处，如果包含/，即多级目录；
           # 则target_image_name不能为空，并且必需重命名，而且不能包含多级路径
           image_name: nacos/nacos-server
-          target_image_name: ""
+          target_image_name: "nacos-server"
           # 指定镜像标签
           tag: v2.3.2
       run: |         
