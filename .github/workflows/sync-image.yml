@@ -44,7 +44,7 @@ jobs:
           image_name: rabbitmq
           target_image_name: ""
           # 指定镜像标签
-          tag: 4.1-rc-management⁠
+          tag: 4.1.0-beta.3-management
       run: |         
           if ${{ contains(env.image_name, '/') }} ; then
             echo "镜像名，多级目录！！！"
